@@ -1,14 +1,330 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="mn">
+ 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <script type="module" src="like-button.js"></script>
+    <title>Recipe Page</title>
+    <style>
+        body {
+            font-family: "Arial", sans-serif;
+            margin: 0;
+            background-color: #f8f6f2;
+            color: #333;
+        }
+ 
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 40px;
+            border-bottom: 1px solid #ddd;
+            background-color: #fff;
+        }
+ 
+        header nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+ 
+        header .actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+ 
+        header input[type="search"] {
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            padding: 5px 10px;
+            outline: none;
+        }
+ 
+        header button {
+            background-color: #ff8b7e;
+            border: none;
+            border-radius: 20px;
+            padding: 6px 16px;
+            color: white;
+            cursor: pointer;
+        }
+ 
+        main {
+            display: grid;
+            grid-template-areas:
+                "section aside1"
+                "section aside2";
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+            padding: 30px 40px;
+        }
+ 
+        section {
+            grid-area: section;
+        }
+ 
+        section img {
+            width: 100%;
+            border-radius: 12px;
+        }
+ 
+        section h1 {
+            margin-top: 20px;
+            font-family: "Georgia", serif;
+            font-size: 1.8rem;
+        }
+ 
+        section p {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+ 
+        .btn-group {
+            margin: 15px 0;
+            display: flex;
+            gap: 10px;
+        }
+ 
+        .btn {
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        
+        #btn {
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        .save {
+            background-color: #ff8b7e;
+            color: #fff;
+        }
+        #like {
+            background-color: #ffd47e;
+            color: #222;
+        }
+ 
+        .like {
+            background-color: #ffd47e;
+            color: #222;
+        }
+ 
+        h2 {
+            font-family: "Georgia", serif;
+            margin-top: 30px;
+        }
+ 
+        ul {
+            line-height: 1.8;
+        }
+ 
+        ol {
+            line-height: 1.8;
+        }
+ 
+        aside.related {
+            grid-area: aside1;
+        }
+ 
+        aside.related h2 {
+            margin-top: 0;
+        }
+ 
+        article.recipe-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background-color: #fff;
+            border: 2px solid #b9d6ff;
+            border-radius: 10px;
+            padding: 10px 12px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+        }
+ 
+        article.recipe-card img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+ 
+        article.recipe-card h3 {
+            margin: 0;
+            font-size: 1rem;
+        }
+ 
+        article.recipe-card a {
+            text-decoration: none;
+            color: #e76f51;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+ 
+        aside.comments {
+            grid-area: aside2;
+        }
+ 
+        aside.comments textarea {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            font-family: inherit;
+            margin-bottom: 10px;
+        }
+ 
+        aside.comments button {
+            background-color: #ff8b7e;
+            border: none;
+            padding: 8px 16px;
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+ 
+        .comment {
+            background-color: white;
+            border-radius: 10px;
+            padding: 10px;
+            margin-top: 10px;
+            border: 1px solid #eee;
+        }
+ 
+        footer {
+            background-color: #fff;
+            border-top: 1px solid #ddd;
+            padding: 20px 40px;
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: 40px;
+        }
+        label {
+            filter: grayscale();
+            cursor: pointer;
+            &:has(input:checked){
+                filter: none;
+                
+            }
+            input{
+                display: none;
+            }
+        }
+
+    </style>
 </head>
+ 
 <body>
-    <p>Hello</p>
-    <body>
-        hi
-    </body>
+    <header>
+        <div class="logo"><strong>LOGO</strong></div>
+        <nav>
+            <a href="#">Нүүр хуудас</a>
+            <a href="#">Жорууд</a>
+            <a href="#">Төрлөөр</a>
+            <a href="#">Орцоор</a>
+        </nav>
+        <div class="actions">
+            <input type="search" placeholder="Хайх..." />
+            <button>Нэвтрэх</button>
+        </div>
+    </header>
+ 
+    <main>
+        <section>
+            <img src="https://images.unsplash.com/photo-1617196034986-6e9b9a5b8a02?auto=format&fit=crop&w=900&q=80%22
+                alt="Fried Dumpling">
+ 
+            <h1>Fried Dumpling</h1>
+            <p>These authentic Jamaican fried dumplings are the real deal! They’re perfectly puffy, golden brown on the
+                outside.
+            </p>
+ 
+            <div class="btn-group">
+                <button class="btn save">❤️ Хадгалах</button>
+                <like-button></like-button>
+            </div>
+ 
+            <h2>Орц</h2>
+            <ul>
+                <li>2 cups all-purpose flour</li>
+                <li>2 tbsp sugar</li>
+                <li>1 tbsp baking powder</li>
+                <li>1/2 tsp salt</li>
+                <li>1 1/2 cups milk</li>
+                <li>2 large eggs</li>
+                <li>2 tbsp melted butter</li>
+            </ul>
+ 
+            <h2>Хийх дараалал</h2>
+            <ol>
+                <li>In a large bowl, whisk together flour, sugar, baking powder, and salt.</li>
+                <li>Add milk, eggs, and melted butter; whisk until smooth.</li>
+                <li>Heat a lightly oiled pan over medium heat.</li>
+                <li>Pour 1/4 cup of batter for each dumpling and cook until golden brown.</li>
+                <li>Serve warm with honey, fruits, or syrup.</li>
+            </ol>
+        </section>
+ 
+        <aside class="related">
+            <h2>Холбоотой жорууд</h2>
+ 
+            <article class="recipe-card">
+                <img src="https://images.unsplash.com/photo-1604152135912-04a579b5154e?auto=format&fit=crop&w=200&q=80%22
+                    alt="Pumpkin pie">
+                <div>
+                    <h3>Pumpkin pie</h3>
+                    <a href="#">Жорыг харах →</a>
+                </div>
+            </article>
+ 
+            <article class="recipe-card">
+                <img src="https://images.unsplash.com/photo-1604152135912-04a579b5154e?auto=format&fit=crop&w=200&q=80%22
+                    alt="Pumpkin pie">
+                <div>
+                    <h3>Pumpkin pie</h3>
+                    <a href="#">Жорыг харах →</a>
+                </div>
+            </article>
+ 
+            <article class="recipe-card">
+                <img src="https://images.unsplash.com/photo-1604152135912-04a579b5154e?auto=format&fit=crop&w=200&q=80%22
+                    alt="Pumpkin pie">
+                <div>
+                    <h3>Pumpkin pie</h3>
+                    <a href="#">Жорыг харах →</a>
+                </div>
+            </article>
+        </aside>
+ 
+        <aside class="comments">
+            <h2>Сэтгэгдэл</h2>
+            <textarea rows="3" placeholder="Сэтгэгдэл үлдээх..."></textarea>
+            <button>Илгээх</button>
+ 
+            <div class="comment">
+                <strong>UserName</strong>
+                <p>User's comment text</p>
+            </div>
+ 
+            <div class="comment">
+                <strong>UserName</strong>
+                <p>User's comment text</p>
+            </div>
+        </aside>
+    </main>
+ 
+    <footer>
+        <p>Шинэ жорын мэдээлэл хүлээн авна уу</p>
+        <p>©2025 Миний Жор — Бүх эрх хуулиар хамгаалагдсан</p>
+    </footer>
 </body>
+ 
 </html>
